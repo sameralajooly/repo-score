@@ -120,6 +120,54 @@ npm run test
 
 ---
 
+## Run with Docker
+
+You can build and run the API using Docker or Docker Compose.
+
+### Option 1 – Docker Compose (recommended)
+
+1. Ensure your `.env` file exists in the project root (copy from `.env.sample` and edit values).
+
+2. Build and start the container:
+
+   ```bash
+   docker compose up --build
+   ```
+
+3. The service will be available at:
+
+   ```
+   http://localhost:3000
+   ```
+
+4. To stop and remove containers:
+
+   ```bash
+   docker compose down
+   ```
+
+### Option 2 – Docker CLI
+
+Build the image:
+
+```bash
+docker build -t repo-score:latest .
+```
+
+Run it, passing your environment file:
+
+```bash
+docker run -p 3000:3000 --env-file .env repo-score:latest
+```
+
+Then open:
+
+```
+http://localhost:3000/health
+```
+
+---
+
 ## Tech Stack
 
 | Area        | Library            |
