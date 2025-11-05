@@ -5,13 +5,14 @@ import type {
   GithubSort,
   ScoredRepoItem,
 } from "../types/github.types";
+import { config } from "../config";
 
 const SCORE_WEIGHTS = {
-  stars: Number(process.env.SCORE_W_STARS ?? 0.3),
-  forks: Number(process.env.SCORE_W_FORKS ?? 0.6),
-  recency: Number(process.env.SCORE_W_RECENCY ?? 0.1),
+  stars: config.scoreWeights.stars,
+  forks: config.scoreWeights.forks,
+  recency: config.scoreWeights.recency,
 } as const;
-const HALF_LIFE_DAYS = Number(process.env.SCORE_HALF_LIFE_DAYS ?? 30);
+const HALF_LIFE_DAYS = config.halfLifeDays;
 
 const getGithubRepos = async (
   client: Octokit,
