@@ -31,7 +31,7 @@ npm install
 
 ### 2. Environment variables
 
-Rename the file `.env.sample` to `.env` and set the values as desired:
+Create `.env` file in the project root (copy from `.env.sample` and edit values).
 
 ```
 PORT=3000
