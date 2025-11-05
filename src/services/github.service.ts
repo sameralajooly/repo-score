@@ -35,7 +35,7 @@ const getGithubRepos = async (
       ...(order ? { order } : {}),
       ...(perPage ? { per_page: perPage } : {}),
       ...(page ? { page } : {}),
-      headers: { "X-GitHub-Api-Version": "2022-11-28" }, // optional
+      headers: { "X-GitHub-Api-Version": "2022-11-28" },
     });
   } catch (e: any) {
     if (e.status === 403) {
@@ -49,7 +49,7 @@ const getGithubRepos = async (
   }
 };
 
-const calculatePopularityScore = (
+export const calculatePopularityScore = (
   starsCount: number,
   forksCount: number,
   pushedAt: string,

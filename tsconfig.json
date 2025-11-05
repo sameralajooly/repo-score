@@ -37,7 +37,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
 
-    // My changes
     "moduleResolution": "bundler"
   },
   "include": ["src"]
