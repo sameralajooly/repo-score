@@ -30,14 +30,20 @@ const getGithubRepos = async (
     query.trim().length > 0 ? `+${sanitize(query.trim())}` : "";
 
   try {
-    return await client.request("GET /search/repositories", {
-      q: `language:${language}+created:>=${createdAt}${additionalQuery}`,
-      ...(sort ? { sort } : {}),
-      ...(order ? { order } : {}),
-      ...(perPage ? { per_page: perPage } : {}),
-      ...(page ? { page } : {}),
-      headers: { "X-GitHub-Api-Version": "2022-11-28" },
-    });
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), 15000);
+
+    return await client
+      .request("GET /search/repositories", {
+        q: `language:${language}+created:>=${createdAt}${additionalQuery}`,
+        ...(sort ? { sort } : {}),
+        ...(order ? { order } : {}),
+        ...(perPage ? { per_page: perPage } : {}),
+        ...(page ? { page } : {}),
+        headers: { "X-GitHub-Api-Version": "2022-11-28" },
+        request: { signal: controller.signal, timeout: 15000 },
+      })
+      .finally(() => clearTimeout(t));
   } catch (e: any) {
     if (e.status === 403) {
       throw new Error(

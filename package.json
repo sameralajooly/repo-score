@@ -21,9 +21,11 @@
   },
   "dependencies": {
     "@octokit/core": "^7.0.6",
+    "@types/helmet": "^0.0.48",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
     "zod": "^4.1.12"
   },
   "devDependencies": {
